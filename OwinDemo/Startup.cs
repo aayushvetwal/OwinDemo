@@ -12,7 +12,7 @@ namespace OwinDemo
     {
         public static void Configuration(IAppBuilder app)
         {
-            app.Use<DebugMiddleware>();
+            app.Use<DebugMiddleware>(new DebugMiddlewareOptions());
 
             app.Use(async (ctx, next) => {
                 await ctx.Response.WriteAsync("<html><head></head><body>Hello World</body></html>");
