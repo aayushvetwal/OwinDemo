@@ -40,13 +40,13 @@ namespace OwinDemo
             config.MapHttpAttributeRoutes(); //maps all the attributed routes setup in controller
             app.UseWebApi(config);
 
-            //app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); }); //this works only with localhost:xxxx/nancy/nancy...because Nancy does its routing based on RequestPath only ignoring RequestPathBase
+            app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); }); //this works only with localhost:xxxx/nancy/nancy...because Nancy does its routing based on RequestPath only ignoring RequestPathBase
             //app.UseNancy(); //this gives 404 error for root i.e. localhost:xxxx/ but works for localhost:xxxx/nancy
 
-            app.UseNancy(conf => {
-                //pass through nancy to next middleware if status code is "not found" (404)
-                conf.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound);
-            });
+            //app.UseNancy(conf => {
+            //    //pass through nancy to next middleware if status code is "not found" (404)
+            //    conf.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound);
+            //});
 
             //The reason the hello world middleware is commented below is because asp.net mvc middleware only
             //works if there are no other middlewares to send response. If the middleware below continues to 
