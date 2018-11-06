@@ -14,7 +14,7 @@ namespace OwinDemo.Modules
             Get["/nancy"] = x =>
             {
                 var env = Context.GetOwinEnvironment();
-                return "Hello from Nany! You requested: " + env["owin.RequestPath"];
+                return "Hello from Nancy! You requested: " + env["owin.RequestPath"];
             };
         }
     }
