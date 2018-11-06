@@ -43,9 +43,12 @@ namespace OwinDemo
                 conf.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound);
             });
 
-            app.Use(async (ctx, next) => {
-                await ctx.Response.WriteAsync("<html><head></head><body>Hello World</body></html>");
-            });
+            //The reason the hello world middleware is commented below is because asp.net mvc middleware only
+            //works if there are no other middlewares to send response. If the middleware below continues to 
+            //send response, mvc doesn't work.
+            //app.Use(async (ctx, next) => {
+            //    await ctx.Response.WriteAsync("<html><head></head><body>Hello World</body></html>");
+            //});
         }
     }
 }
