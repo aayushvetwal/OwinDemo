@@ -33,5 +33,11 @@ namespace OwinDemo.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            return Redirect("/");
+        }
     }
 }
