@@ -31,6 +31,11 @@ namespace OwinDemo
 
             });
 
+            app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions {
+                AuthenticationType = "ApplicationCookie", //you can call it whatever you want
+                LoginPath = new Microsoft.Owin.PathString("/Auth/Login")
+            });
+
             var config = new HttpConfiguration();   //config object contains all configuration for web api to run
             config.MapHttpAttributeRoutes(); //maps all the attributed routes setup in controller
             app.UseWebApi(config);
