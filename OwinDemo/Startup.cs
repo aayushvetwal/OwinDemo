@@ -36,6 +36,14 @@ namespace OwinDemo
                 LoginPath = new Microsoft.Owin.PathString("/Auth/Login")
             });
 
+            app.Use(async (ctx, next) => {
+                if(ctx.Authentication.User.Identity.IsAuthenticated)
+                    Debug.WriteLine("User: " + ctx.Authentication.User.Identity.Name);
+                else
+                    Debug.WriteLine("User Not Authenticated");
+                await next();
+            });
+
             var config = new HttpConfiguration();   //config object contains all configuration for web api to run
             config.MapHttpAttributeRoutes(); //maps all the attributed routes setup in controller
             app.UseWebApi(config);
