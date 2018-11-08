@@ -39,5 +39,13 @@ namespace OwinDemo.Controllers
             HttpContext.GetOwinContext().Authentication.SignOut();
             return Redirect("/");
         }
+
+        public ActionResult LoginFacebook() {
+            HttpContext.GetOwinContext().Authentication.Challenge(new Microsoft.Owin.Security.AuthenticationProperties
+            {
+                RedirectUri = "/secret"
+            }, "Facebook");
+            return new HttpUnauthorizedResult();
+        }
     }
 }
